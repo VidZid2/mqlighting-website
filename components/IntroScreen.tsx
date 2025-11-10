@@ -23,7 +23,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
   const hasPlayedRef = useRef(false)
   
   // Performance optimization: detect device type
-  const { isLowPerformance } = useDeviceDetection()
+  const { isLowPerformance, isMobile, isTablet, isTouchDevice } = useDeviceDetection()
 
   // Non-camera showcase images
   const showcaseImages = [
@@ -214,8 +214,8 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="fixed inset-0 z-[9999] bg-white flex items-center justify-center overflow-hidden custom-cursor-page"
         >
-          {/* Smooth Custom Cursor */}
-          <SmoothCursor />
+          {/* Smooth Custom Cursor - Desktop Only */}
+          {!isMobile && !isTablet && !isTouchDevice && <SmoothCursor />}
 
           {/* Content Container */}
           <div className="relative w-full h-full flex items-center justify-center">
